@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leetcode Problems</title>
+    <style>
+        /* Default light mode styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background: linear-gradient(90deg, #2a2a72, #009ffd);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        /* Navbar Logo */
+        #navbar-logo {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* Navbar Links */
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #1e90ff;
+        }
+
+        /* Active Link */
+        nav a.active {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #1e90ff;
+        }
+
+        /* Dark mode navbar */
+        body.dark-mode nav {
+            background: linear-gradient(90deg, #444, #2f2f2f);
+        }
+
+        /* Dark mode links */
+        body.dark-mode nav a {
+            color: #fff;
+        }
+
+        body.dark-mode nav a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #1e90ff;
+        }
+
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger-menu div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .filter-buttons button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .filter-buttons button:hover {
+            background-color: #555;
+        }
+
+        /* Dark mode filter buttons */
+        body.dark-mode .filter-buttons button {
+            background-color: #555;
+        }
+
+        /* Problem Table */
+        .problem-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        .problem-table th, .problem-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #555;
+        }
+
+        .problem-table tr:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+
+        body.dark-mode .problem-table tr:nth-child(even) {
+            background-color: #222;
+        }
+
+        a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        input[type="checkbox"] {
+            background-color: #222;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: #1e90ff;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer .copy {
+            margin-top: 10px;
+        }
+
+        footer .copy a {
+            color: #fff;
+            font-size: 12px;
+        }
+
+        /* Home Page Styles */
+        .home-page {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .home-page h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .home-page p {
+            font-size: 1.2em;
+        }
+
+        /* Dark mode for home page */
+        body.dark-mode .home-page h1, 
+        body.dark-mode .home-page p {
+            color: #fff;
+        }
+
+        /* Dark mode toggle button */
+        #dark-mode-toggle {
+            background-color: #444;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        body.dark-mode #dark-mode-toggle {
+            background-color: #ccc;
+            color: #000;
+        }
+
+        /* Responsive Navbar */
+        @media screen and (max-width: 768px) {
+            nav {
+                justify-content: space-between;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav a {
+                margin: 5px 0;
+                padding: 10px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hamburger-menu {
+                display: flex;
+            }
+
+            nav .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav .nav-links.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" id="navbar-logo">Interview Problem Tracker</a>
+        
+        <!-- Hamburger Menu -->
+        <div class="hamburger-menu" id="hamburger-menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <!-- Navbar Links -->
+        <div class="nav-links" id="nav-links">
+            <a href="#" id="home-link" class="nav-link">Home</a>
+            <a href="#" id="about-link" class="nav-link">About</a>
+            <a href="#" id="problem-link" class="nav-link">Problem Page</a>
+             <button id="dark-mode-toggle">Toggle Dark Mode</button>
+        </div>
+        <!-- Dark Mode Toggle Button -->
+       
+    </nav>
+
+    <!-- Content Area -->
+    <div id="content">
+
+        <!-- Home Page Content -->
+        <div id="home-page" class="home-page">
+            <h1>Welcome to Leetcode Problems Tracker</h1>
+            <p>Explore and solve problems from various categories like Array, String, Dynamic Programming, etc.</p>
+            <p>Use this page to track your progress and mark problems as done after solving.</p>
+        </div>
+
+        <!-- About Page Content -->
+        <div id="about-page" style="display: none; text-align: center; padding: 50px;">
+            <h1>About</h1>
+            <p>This platform helps you organize and track your progress on solving Leetcode problems.</p>
+            <p>Start by selecting a category or explore problems by navigating to the problem page.</p>
+        </div>
+
+        <!-- Problem Page Content -->
+        <div id="problem-page" style="display: none;">
+            <div class="filter-buttons">
+                <button onclick="filterCategory('array')">Array</button>
+                <button onclick="filterCategory('string')">String</button>
+                <button onclick="filterCategory('dp')">Dynamic Programming</button>
+                <button onclick="filterCategory('all')">All Problems</button>
+            </div>
+
+            <table class="problem-table">
+                <thead>
+                    <tr>
+                        <th>Serial</th>
+                        <th>Problem</th>
+                        <th>Link</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="problem-list">
+                    <!-- Problems will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Leetcode Problems. All Rights Reserved.</p>
+        <p>For more information, visit <a href="https://leetcode.com" target="_blank">Leetcode</a></p>
+        <div class="copy">
+            <p>Made with ❤️ by Your Name. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Add event listener for dark mode toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        // Check the stored theme preference in localStorage
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            body.classList.add('dark-mode');
+        }
+
+        // Toggle dark mode on button click
+        darkModeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('dark-mode', 'enabled');
+            } else {
+                localStorage.setItem('dark-mode', 'disabled');
+            }
+        });
+
+        // Define problems for each category
+        const problems = {
+            array: [
+                { serial: 1, name: 'Two Sum', link: 'https://leetcode.com/problems/two-sum/' },
+                { serial: 2, name: 'Product of Array Except Self', link: 'https://leetcode.com/problems/product-of-array-except-self/' },
+                { serial: 3, name: 'Maximum Subarray', link: 'https://leetcode.com/problems/maximum-subarray/' }
+            ],
+            string: [
+                { serial: 1, name: 'Longest Palindromic Substring', link: 'https://leetcode.com/problems/longest-palindromic-substring/' },
+                { serial: 2, name: 'Valid Palindrome', link: 'https://leetcode.com/problems/valid-palindrome/' },
+                { serial: 3, name: 'Anagram', link: 'https://leetcode.com/problems/group-anagrams/' }
+            ],
+            dp: [
+                { serial: 1, name: 'Climbing Stairs', link: 'https://leetcode.com/problems/climbing-stairs/' },
+                { serial: 2, name: 'House Robber', link: 'https://leetcode.com/problems/house-robber/' },
+                { serial: 3, name: 'Longest Increasing Subsequence', link: 'https://leetcode.com/problems/longest-increasing-subsequence/' }
+            ]
+        };
+
+        // Display the problems based on the selected category
+        function filterCategory(category) {
+            const problemList = document.getElementById('problem-list');
+            problemList.innerHTML = '';  // Clear the current problem list
+
+            const selectedProblems = category === 'all' ? 
+                [...problems.array, ...problems.string, ...problems.dp] :
+                problems[category];
+
+            selectedProblems.forEach(problem => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${problem.serial}</td>
+                    <td>${problem.name}</td>
+                    <td><a href="${problem.link}" target="_blank">Link</a></td>
+                    <td><input type="checkbox"></td>
+                `;
+                problemList.appendChild(row);
+            });
+        }
+
+        // Add event listeners to change the content displayed when nav items are clicked
+        document.getElementById('home-link').addEventListener('click', function() {
+            document.getElementById('home-page').style.display = 'block';
+            document.getElementById('about-page').style.display = 'none';
+            document.getElementById('problem-page').style.display = 'none';
+            setActiveLink('home-link');
+        });
+
+        document.getElementById('about-link').addEventListener('click', function() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('about-page').style.display = 'block';
+            document.getElementById('problem-page').style.display = 'none';
+            setActiveLink('about-link');
+        });
+
+        document.getElementById('problem-link').addEventListener('click', function() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('about-page').style.display = 'none';
+            document.getElementById('problem-page').style.display = 'block';
+            filterCategory('all');  // Show all problems by default
+            setActiveLink('problem-link');
+        });
+
+        function setActiveLink(activeLink) {
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+            });
+            document.getElementById(activeLink).classList.add('active');
+        }
+
+        // Toggle the navigation links visibility for small screens (hamburger menu)
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburgerMenu.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Default to home page
+        document.getElementById('home-link').click();
+
+    </script>
+</body>
+</html>
