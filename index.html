@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>Leetcode Problems</title>
     <style>
         /* Default light mode styles */
@@ -32,6 +33,7 @@
             top: 0;
             z-index: 1000;
             flex-wrap: wrap;
+            
         }
 
         /* Navbar Logo */
@@ -51,17 +53,20 @@
             padding: 10px 15px;
             border-radius: 5px;
             transition: all 0.3s ease;
+            
         }
 
         nav a:hover {
             background-color: rgba(255, 255, 255, 0.2);
             color: #1e90ff;
+            
         }
 
         /* Active Link */
         nav a.active {
             background-color: rgba(255, 255, 255, 0.3);
-            color: #1e90ff;
+            color: white;
+            
         }
 
         /* Dark mode navbar */
@@ -270,7 +275,10 @@
             <a href="#" id="home-link" class="nav-link">Home</a>
             <a href="#" id="about-link" class="nav-link">About</a>
             <a href="#" id="problem-link" class="nav-link">Problem Page</a>
-             <button id="dark-mode-toggle">Toggle Dark Mode</button>
+            <!-- Dark Mode Toggle Icon -->
+        <button id="dark-mode-toggle">
+            <i id="dark-mode-icon" class="fas fa-sun"></i>
+        </button>
         </div>
         <!-- Dark Mode Toggle Button -->
        
@@ -323,7 +331,7 @@
         <p>&copy; 2025 Leetcode Problems. All Rights Reserved.</p>
         <p>For more information, visit <a href="https://leetcode.com" target="_blank">Leetcode</a></p>
         <div class="copy">
-            <p>Made with ❤️ by Your Name. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <p>Made with ❤️ by Munna Kumar. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
         </div>
     </footer>
 
